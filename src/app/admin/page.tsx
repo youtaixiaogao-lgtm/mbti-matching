@@ -1,8 +1,9 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useState, useEffect } from "react";
-import { getAllProfiles, getAllMatches, getAllLikes, DBProfile } from "@/lib/supabase-db";
 import { supabase } from "@/lib/supabase";
+import { getAllProfiles, getAllMatches, getAllLikes, DBProfile } from "@/lib/supabase-db";
 
 type Tab = "users" | "matches" | "likes" | "stats";
 
