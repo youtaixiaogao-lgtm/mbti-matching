@@ -20,13 +20,27 @@ export default function AuthPage() {
     setMessage("");
 
     if (mode === "signup") {
-      const { error: err } = await supabase.auth.signUp({
+      const { data: signUpData, error: err } = await supabase.auth.signUp({
         email,
         password,
+        options: {
+          emailRedirectTo: `${window.location.origin}/auth/callback`,
+        },
       });
       setLoading(false);
       if (err) {
-        setError(err.message);
+        if (err.message.includes("already registered") || err.message.includes("already been registered")) {
+          setError("このメールアドレスは既に登録されています。ログインしてください。");
+          setMode("login");
+        } else {
+          setError(err.message);
+        }
+        return;
+      }
+      // Supabaseは既存メールでもエラーを返さない場合がある（identities空）
+      if (signUpData.user && signUpData.user.identities?.length === 0) {
+        setError("このメールアドレスは既に登録されています。ログインしてください。");
+        setMode("login");
         return;
       }
       setMessage("確認メールを送信しました。メール内のリンクをクリックしてください。");
