@@ -73,12 +73,29 @@ export default function AuthPage() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center px-4">
       <div className="w-full max-w-md">
-        <h1 className="text-2xl font-bold text-center mb-2">MBTI Match</h1>
-        <p className="text-gray-500 text-center mb-6">
-          {mode === "signup" ? "アカウント作成" : "ログイン"}
-        </p>
+        <h1 className="text-2xl font-bold text-center mb-6">MBTI Match</h1>
 
         <div className="bg-white rounded-2xl shadow-lg p-6 space-y-4">
+          {/* タブ切り替え */}
+          <div className="flex rounded-lg bg-gray-100 p-1">
+            <button
+              onClick={() => { setMode("signup"); setError(""); setMessage(""); }}
+              className={`flex-1 py-2 rounded-md text-sm font-medium transition-colors ${
+                mode === "signup" ? "bg-white text-pink-500 shadow-sm" : "text-gray-500"
+              }`}
+            >
+              新規登録
+            </button>
+            <button
+              onClick={() => { setMode("login"); setError(""); setMessage(""); }}
+              className={`flex-1 py-2 rounded-md text-sm font-medium transition-colors ${
+                mode === "login" ? "bg-white text-pink-500 shadow-sm" : "text-gray-500"
+              }`}
+            >
+              ログイン
+            </button>
+          </div>
+
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
               メールアドレス
@@ -124,18 +141,17 @@ export default function AuthPage() {
               : "ログイン"}
           </button>
 
-          <button
-            onClick={() => {
-              setMode(mode === "signup" ? "login" : "signup");
-              setError("");
-              setMessage("");
-            }}
-            className="w-full text-gray-500 text-sm py-2"
-          >
-            {mode === "signup"
-              ? "すでにアカウントをお持ちの方"
-              : "新規アカウント作成はこちら"}
-          </button>
+          {mode === "login" && (
+            <button
+              onClick={() => {
+                // パスワードリセット機能（将来実装）
+                alert("パスワードリセット機能は準備中です。");
+              }}
+              className="w-full text-gray-400 text-xs py-1"
+            >
+              パスワードを忘れた方
+            </button>
+          )}
         </div>
       </div>
     </div>
