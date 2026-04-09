@@ -16,14 +16,28 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "MBTI Match - 相性で繋がるマッチングアプリ",
-  description: "MBTIの相性が良い人としかマッチしない、新しいマッチングアプリ",
+  title: "MBTI Match - 相性の良い人としかマッチしないマッチングアプリ",
+  description: "MBTIの16タイプの性格相性に基づいて、本当に合う人だけと出会えるマッチングアプリ。完全無料。スワイプで簡単にいいね、マッチ後すぐチャット。",
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
     title: "MBTI Match",
   },
+  openGraph: {
+    title: "MBTI Match - 相性の良い人としかマッチしない",
+    description: "MBTIの性格タイプに基づいて、本当に合う人だけと出会える。完全無料のマッチングアプリ。",
+    type: "website",
+    locale: "ja_JP",
+    siteName: "MBTI Match",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MBTI Match - 相性の良い人としかマッチしない",
+    description: "MBTIの性格タイプに基づいて、本当に合う人だけと出会える。完全無料。",
+  },
+  keywords: ["MBTI", "マッチングアプリ", "性格診断", "相性", "恋愛", "出会い", "16タイプ", "INTJ", "ENFP", "INFJ", "ENTP"],
+  robots: "index, follow",
 };
 
 export default function RootLayout({

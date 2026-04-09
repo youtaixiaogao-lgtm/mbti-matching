@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import InstallBanner from "@/components/InstallBanner";
 import { supabase } from "@/lib/supabase";
 import {
   getMyProfile,
@@ -714,6 +715,8 @@ export default function DiscoverPage() {
           onApply={applyFilters}
         />
       )}
+
+      <InstallBanner />
     </div>
   );
 }

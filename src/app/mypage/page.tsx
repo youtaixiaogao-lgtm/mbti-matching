@@ -268,8 +268,22 @@ export default function MyPage() {
           </div>
         </div>
 
+        {/* 招待 */}
+        <button
+          onClick={() => router.push("/invite")}
+          className="w-full bg-gradient-to-r from-pink-500 to-purple-500 text-white font-bold py-4 rounded-2xl shadow-sm text-sm"
+        >
+          🎉 友達を招待する
+        </button>
+
         {/* 設定 */}
         <div className="bg-white rounded-2xl shadow-sm p-4 space-y-3">
+          <button
+            onClick={() => router.push("/share?type=" + profile?.mbti_type)}
+            className="w-full text-left text-sm text-gray-700 py-2 border-b border-gray-100"
+          >
+            MBTI診断結果をシェア
+          </button>
           <button
             onClick={() => router.push("/admin")}
             className="w-full text-left text-sm text-gray-700 py-2 border-b border-gray-100"
