@@ -9,103 +9,107 @@ export type MBTIType = (typeof MBTI_TYPES)[number];
 
 export type CompatibilityLevel = "best" | "good" | "neutral" | "bad";
 
-// MBTI相性テーブル（科学的根拠に基づく一般的な分類）
+// MBTI相性テーブル（Socionics双対関係に基づく）
+// best = 双対関係（認知機能が完全に補完し合う）
+// good = 活性化関係・同一・鏡像関係
+// neutral = その他
+// bad = 対立・監督関係
 export const COMPATIBILITY_MAP: Record<MBTIType, Record<CompatibilityLevel, MBTIType[]>> = {
-  INTJ: {
-    best: ["ENFP", "ENTP"],
-    good: ["INFJ", "INFP", "ENTJ", "INTJ"],
-    neutral: ["INTP", "ENFJ", "ISTJ", "ISFJ", "ESTJ", "ESFJ"],
-    bad: ["ISTP", "ISFP", "ESTP", "ESFP"],
-  },
   INTP: {
-    best: ["ENTJ", "ESTJ"],
-    good: ["INTJ", "ENTP", "INFP", "INTP"],
-    neutral: ["ENFP", "ENFJ", "INFJ", "ISTJ", "ISFJ", "ESFJ"],
-    bad: ["ISTP", "ISFP", "ESTP", "ESFP"],
+    best: ["ESFP", "ENFJ"],
+    good: ["ENTP", "INTJ", "INFP", "ESTP"],
+    neutral: ["ENTJ", "INFJ", "ENFP", "ISTP", "ISFP", "ESTJ"],
+    bad: ["ISTJ", "ISFJ", "ESFJ", "INTP"],
   },
-  ENTJ: {
-    best: ["INTP", "INFP"],
-    good: ["INTJ", "ENTP", "ENTJ", "ENFJ"],
-    neutral: ["ENFP", "INFJ", "ISTJ", "ISFJ", "ESTJ", "ESFJ"],
-    bad: ["ISTP", "ISFP", "ESTP", "ESFP"],
+  INTJ: {
+    best: ["ESFJ", "ENFP"],
+    good: ["ENTJ", "INTP", "INFJ", "ESTJ"],
+    neutral: ["ENTP", "INFP", "ENFJ", "ISTP", "ISFP", "ESFP"],
+    bad: ["ISTJ", "ISFJ", "ESTP", "INTJ"],
   },
   ENTP: {
-    best: ["INTJ", "INFJ"],
-    good: ["INTP", "ENTJ", "ENFP", "ENTP"],
-    neutral: ["INFP", "ENFJ", "ISTJ", "ISFJ", "ESTJ", "ESFJ"],
-    bad: ["ISTP", "ISFP", "ESTP", "ESFP"],
+    best: ["ISFP", "INFJ"],
+    good: ["INTP", "ENTJ", "ENFP", "ISTP"],
+    neutral: ["INTJ", "INFP", "ENFJ", "ESFP", "ESTP", "ESFJ"],
+    bad: ["ISTJ", "ISFJ", "ESTJ", "ENTP"],
   },
-  INFJ: {
-    best: ["ENTP", "ENFP"],
-    good: ["INFP", "INTJ", "INFJ", "ENFJ"],
-    neutral: ["INTP", "ENTJ", "ISTJ", "ISFJ", "ESTJ", "ESFJ"],
-    bad: ["ISTP", "ISFP", "ESTP", "ESFP"],
+  ENTJ: {
+    best: ["ISFJ", "INFP"],
+    good: ["INTJ", "ENTP", "ENFJ", "ISTJ"],
+    neutral: ["INTP", "INFJ", "ENFP", "ESFJ", "ESTJ", "ESFP"],
+    bad: ["ISTP", "ISFP", "ESTP", "ENTJ"],
   },
   INFP: {
-    best: ["ENTJ", "ENFJ"],
-    good: ["INFJ", "INTP", "ENFP", "INFP"],
-    neutral: ["INTJ", "ENTP", "ISTJ", "ISFJ", "ESTJ", "ESFJ"],
-    bad: ["ISTP", "ISFP", "ESTP", "ESFP"],
+    best: ["ESTJ", "ENTJ"],
+    good: ["ENFP", "INFJ", "INTP", "ESFJ"],
+    neutral: ["ENFJ", "INTJ", "ENTP", "ISFP", "ISFJ", "ESFP"],
+    bad: ["ISTP", "ESTP", "ISTJ", "INFP"],
   },
-  ENFJ: {
-    best: ["INFP", "ISFP"],
-    good: ["INFJ", "ENFP", "ENTJ", "ENFJ"],
-    neutral: ["INTJ", "INTP", "ENTP", "ISTJ", "ESTJ", "ESFJ"],
-    bad: ["ISTP", "ESTP", "ESFP", "ISFJ"],
+  INFJ: {
+    best: ["ESTP", "ENTP"],
+    good: ["ENFJ", "INFP", "INTJ", "ESFP"],
+    neutral: ["ENFP", "INTP", "ENTJ", "ISFJ", "ISTJ", "ESFJ"],
+    bad: ["ISTP", "ISFP", "ESTJ", "INFJ"],
   },
   ENFP: {
-    best: ["INTJ", "INFJ"],
-    good: ["ENTP", "ENFJ", "INFP", "ENFP"],
-    neutral: ["INTP", "ENTJ", "ISTJ", "ISFJ", "ESTJ", "ESFJ"],
-    bad: ["ISTP", "ISFP", "ESTP", "ESFP"],
+    best: ["ISTJ", "INTJ"],
+    good: ["INFP", "ENFJ", "ENTP", "ISFJ"],
+    neutral: ["INFJ", "INTP", "ENTJ", "ESFP", "ESFJ", "ESTP"],
+    bad: ["ISTP", "ISFP", "ESTJ", "ENFP"],
   },
-  ISTJ: {
-    best: ["ESFP", "ESTP"],
-    good: ["ISFJ", "ESTJ", "ISTJ", "ESFJ"],
-    neutral: ["INTJ", "INTP", "ENTJ", "ENTP", "INFJ", "INFP", "ENFJ", "ENFP"],
-    bad: ["ISTP", "ISFP"],
-  },
-  ISFJ: {
-    best: ["ESFP", "ESTP"],
-    good: ["ISTJ", "ESFJ", "ESTJ", "ISFJ"],
-    neutral: ["INTJ", "INTP", "ENTJ", "ENTP", "INFJ", "INFP", "ENFP"],
-    bad: ["ISTP", "ISFP", "ENFJ"],
-  },
-  ESTJ: {
-    best: ["INTP", "ISTP"],
-    good: ["ISTJ", "ISFJ", "ESFJ", "ESTJ"],
-    neutral: ["INTJ", "ENTJ", "ENTP", "INFJ", "INFP", "ENFJ", "ENFP"],
-    bad: ["ISFP", "ESTP", "ESFP"],
-  },
-  ESFJ: {
-    best: ["ISFP", "ISTP"],
-    good: ["ISTJ", "ISFJ", "ESTJ", "ESFJ"],
-    neutral: ["INTJ", "INTP", "ENTJ", "ENTP", "INFJ", "INFP", "ENFP"],
-    bad: ["ESTP", "ESFP", "ENFJ"],
+  ENFJ: {
+    best: ["ISTP", "INTP"],
+    good: ["INFJ", "ENFP", "ENTJ", "ISFP"],
+    neutral: ["INFP", "INTJ", "ENTP", "ESFJ", "ESTJ", "ESFP"],
+    bad: ["ISTJ", "ISFJ", "ESTP", "ENFJ"],
   },
   ISTP: {
-    best: ["ESTJ", "ESFJ"],
-    good: ["ESTP", "ISFP", "ISTP", "ESFP"],
-    neutral: ["ISTJ", "ISFJ", "INTJ", "INTP", "ENTJ", "ENTP", "INFJ", "INFP"],
-    bad: ["ENFJ", "ENFP"],
+    best: ["ENFJ", "ESFJ"],
+    good: ["ESTP", "ISFP", "ENTP", "ESTJ"],
+    neutral: ["ESFP", "ISTJ", "ISFJ", "INTJ", "INTP", "INFJ"],
+    bad: ["ENTJ", "INFP", "ENFP", "ISTP"],
   },
   ISFP: {
-    best: ["ENFJ", "ESFJ"],
-    good: ["ISTP", "ESFP", "ISFP", "ESTP"],
-    neutral: ["ISTJ", "ISFJ", "INTJ", "INTP", "ENTJ", "ENTP", "INFJ", "INFP"],
-    bad: ["ESTJ", "ENFP"],
+    best: ["ENTP", "ESTJ"],
+    good: ["ESFP", "ISTP", "ENFP", "ESFJ"],
+    neutral: ["ESTP", "ISTJ", "ISFJ", "INTJ", "INTP", "INFP"],
+    bad: ["ENTJ", "INFJ", "ENFJ", "ISFP"],
   },
   ESTP: {
-    best: ["ISTJ", "ISFJ"],
-    good: ["ISTP", "ESFP", "ESTP", "ISFP"],
-    neutral: ["INTJ", "INTP", "ENTJ", "ENTP", "INFJ", "INFP", "ENFP"],
-    bad: ["ESTJ", "ESFJ", "ENFJ"],
+    best: ["INFJ", "ISFJ"],
+    good: ["ISTP", "ESFP", "INTP", "ISTJ"],
+    neutral: ["ISFP", "ESTJ", "ESFJ", "ENFP", "ENTP", "ENTJ"],
+    bad: ["INTJ", "INFP", "ENFJ", "ESTP"],
   },
   ESFP: {
-    best: ["ISTJ", "ISFJ"],
-    good: ["ISTP", "ESTP", "ISFP", "ESFP"],
-    neutral: ["INTJ", "INTP", "ENTJ", "ENTP", "INFJ", "INFP", "ENFP"],
-    bad: ["ESTJ", "ESFJ", "ENFJ"],
+    best: ["INTP", "ISTJ"],
+    good: ["ISFP", "ESTP", "INFP", "ISFJ"],
+    neutral: ["ISTP", "ESTJ", "ESFJ", "ENFJ", "ENTP", "ENTJ"],
+    bad: ["INTJ", "INFJ", "ENFP", "ESFP"],
+  },
+  ISTJ: {
+    best: ["ENFP", "ESFP"],
+    good: ["ESTJ", "ISFJ", "ENTJ", "ESTP"],
+    neutral: ["ESFJ", "ISTP", "ISFP", "INTP", "INTJ", "INFP"],
+    bad: ["ENTP", "INFJ", "ENFJ", "ISTJ"],
+  },
+  ISFJ: {
+    best: ["ENTJ", "ESTP"],
+    good: ["ESFJ", "ISTJ", "ENFJ", "ESFP"],
+    neutral: ["ESTJ", "ISTP", "ISFP", "INTP", "INTJ", "INFJ"],
+    bad: ["ENTP", "INFP", "ENFP", "ISFJ"],
+  },
+  ESTJ: {
+    best: ["INFP", "ISFP"],
+    good: ["ISTJ", "ESFJ", "ISTP", "INTJ"],
+    neutral: ["ISFJ", "ESTP", "ESFP", "ENTP", "ENTJ", "ENFJ"],
+    bad: ["INTP", "INFJ", "ENFP", "ESTJ"],
+  },
+  ESFJ: {
+    best: ["INTJ", "ISTP"],
+    good: ["ISFJ", "ESTJ", "ISFP", "INTP"],
+    neutral: ["ISTJ", "ESTP", "ESFP", "ENFP", "ENFJ", "ENTJ"],
+    bad: ["ENTP", "INFP", "INFJ", "ESFJ"],
   },
 };
 
